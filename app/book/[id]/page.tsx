@@ -99,7 +99,7 @@ export default function BookingPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container mx-auto max-w-6xl py-8 px-4">
+      <main className="flex-1 container mx-auto max-w-6xl py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-1">
             <Card>

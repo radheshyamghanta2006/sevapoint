@@ -47,13 +47,18 @@ export default function ProfilePage() {
     location: "",
     phone: "",
   })
+  const [role, setRole] = useState<"seeker" | "provider">("seeker")
   const [skills, setSkills] = useState<
     Array<{ id: string; name: string; category: string; intent: "teach" | "learn" }>
   >([])
-  const [newSkill, setNewSkill] = useState({
+  const [newSkill, setNewSkill] = useState<{
+    name: string
+    category: string
+    intent: "teach" | "learn"
+  }>({
     name: "",
     category: "Education",
-    intent: "teach" as const,
+    intent: "teach",
   })
   const router = useRouter()
   const supabase = createClient()
@@ -129,6 +134,10 @@ export default function ProfilePage() {
     // In a real app, remove skill from database
     setSkills(skills.filter((skill) => skill.id !== id))
   }
+  
+  const handleRoleToggle = (newRole: "seeker" | "provider") => {
+    setRole(newRole)
+  }
 
   if (loading) {
     return (
@@ -144,13 +153,13 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container mx-auto max-w-6xl py-8 px-4">
+      <main className="flex-1 container mx-auto max-w-6xl py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">My Profile</h1>
           <p className="text-muted-foreground">Manage your profile and skills</p>
         </div>
 
-        <RoleToggleSwitch />
+        <RoleToggleSwitch initialRole={role} onToggle={handleRoleToggle} />
 
         <div className="grid md:grid-cols-3 gap-8 mt-8">
           <div className="md:col-span-1">
@@ -333,7 +342,7 @@ export default function ProfilePage() {
                           onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="location">Location</Label>
                           <Input
@@ -351,7 +360,7 @@ export default function ProfilePage() {
                           />
                         </div>
                       </div>
-                      <Button type="submit" className="w-full">
+                      <Button type="submit" className="w-full mt-6">
                         Save Changes
                       </Button>
                     </form>

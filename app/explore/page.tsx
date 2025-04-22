@@ -166,7 +166,7 @@ export default function ExplorePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container mx-auto max-w-6xl py-8 px-4">
+      <main className="flex-1 container mx-auto max-w-6xl py-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="w-full md:w-64 space-y-6">

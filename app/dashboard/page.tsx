@@ -125,7 +125,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container mx-auto max-w-6xl py-8 px-4">
+      <main className="flex-1 container mx-auto max-w-6xl py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">Manage your bookings and availability</p>

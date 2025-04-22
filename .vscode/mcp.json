@@ -1,19 +1,39 @@
 {
-    "inputs": [
-      {
-        "type": "promptString",
-        "id": "supabase-access-token",
-        "description": "Supabase personal access token",
-        "password": true
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "sbp_4db1741f3c662ac4f40fa75cc80fd3a3356650bf",
+      "description": "Supabase personal access token",
+      "password": true
+    },
+    {
+      "type": "promptString",
+      "id": "apiKey",
+      "description": "21st.dev Magic API Key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "supabase": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@supabase/mcp-server-supabase@latest"],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "${input:sbp_4db1741f3c662ac4f40fa75cc80fd3a3356650bf}"
       }
-    ],
-    "servers": {
-      "supabase": {
-        "command": "npx",
-        "args": ["-y", "@supabase/mcp-server-supabase@latest"],
-        "env": {
-          "SUPABASE_ACCESS_TOKEN": "${input:supabase-access-token}"
-        }
+    },
+    "@21st-dev/magic": {
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest"],
+      "env": {
+        "API_KEY": "b8fcff4dbddf7e9fb47240d6221aa76fd26c5194cdcf23f7b47765a70787bf65"
       }
+    },
+    "shadcn-ui-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "shadcn-ui-mcp-server"
+      ]
     }
   }
+}
